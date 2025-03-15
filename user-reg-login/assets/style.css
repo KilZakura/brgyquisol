@@ -1,0 +1,213 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Resetting margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Ensure body takes full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding-top: 0px;
+}
+
+/* Flexbox layout to push footer to the bottom */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Page Background */
+body {
+    background-color: #f8f9fa;
+}
+
+/* Navbar Styling */
+.navbar {
+    padding: 10px 20px;
+    position: relative; /* Ensure navbar is on top */
+    z-index: 10; /* Ensure navbar is above sidebar */
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white !important;
+    margin-left: 10px;
+}
+
+.navbar img {
+    width: 60px;
+    height: 60px;
+}
+
+/* Main Content */
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(210, 210, 210);
+    height: 100vh;
+}
+
+/* Main content should take up all available space */
+main {
+    flex: 1;
+}
+
+/* Login & Registration Forms */
+.login, .registration {
+    border: 2px solid #343a40;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 50px;
+    width: 500px;
+    max-width: 500px;
+    background-color: rgb(240, 240, 240);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form, .registration-form {
+    margin-top: 30px;
+}
+
+/* Registration Form Link */
+.registrationForm {
+    font-size: 13px;
+    margin-top: -15px;
+    color: blue;
+    text-decoration: underline;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Table Styling */
+.table {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Buttons */
+.btn-dark {
+    background-color: #343a40;
+    border-radius: 5px;
+    padding: 8px 15px;
+}
+
+.btn-dark:hover {
+    background-color: #23272b;
+}
+
+/* Edit & Delete Button Icons */
+#editBtn, #deleteBtn {
+    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+    border: none;
+}
+
+/* Edit Button */
+#editBtn {
+    background-color: #ffc107;
+    color: black;
+}
+
+/* Delete Button */
+#deleteBtn {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .content {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .login, .registration {
+        width: 90%;
+        padding: 30px;
+    }
+
+    #editBtn, #deleteBtn {
+        font-size: 16px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+    }
+    #sidebar {
+        margin-top: 80px; /* Align sidebar below navbar */
+        z-index: 2; /* Sidebar should be below navbar */
+    }
+    .container-fluid {
+        margin-left: 0; /* Make the content use the full screen width */
+    }
+}
+
+/* Footer styles */
+footer {
+    margin-top: auto; /* This ensures the footer is pushed to the bottom */
+    background-color: #f1f1f1; /* Optional, for better visibility */
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+/* Container should take the remaining space */
+.container {
+    flex-grow: 1; /* Ensures the content takes up the remaining space */
+}
+
+/* Background Color for Submenus */
+.submenu {
+    background-color: #343a40; /* Dark background for submenus */
+    border-radius: 5px;  /* Optional: adds rounded corners to submenu */
+}
+
+/* Optionally, you can change the background color when hovering over the submenus */
+.submenu .nav-item:hover {
+    background-color: #495057; /* Lighter dark color for hover effect */
+}
+
+/* Adjust the text color for better visibility on hover */
+.submenu .nav-link:hover {
+    color: #f8f9fa; /* White text on hover */
+}
+
+/* Optional: Background color for collapsed sections to make them stand out more */
+.nav-item > a[data-toggle="collapse"]:not(.collapsed) {
+    background-color: #23272b; /* Darker background when section is expanded */
+}
