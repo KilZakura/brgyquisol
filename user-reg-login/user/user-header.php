@@ -5,14 +5,14 @@
 <!-- Font Awesome (optional for icons) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <!-- Custom Style CSS -->
-<link rel="stylesheet" href="./assets/style.css">
+<link rel="stylesheet" href="../assets/style.css">
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <!-- Logo aligned to the left -->
-        <img src="images/logo.png" alt="Logo" style="width: 69px; height: 69px;">
-        <a class="navbar-brand ms-3" href="admin.php">Barangay Quisol: Document Request System</a>
+        <img src="../images/logo.png" alt="Logo" style="width: 69px; height: 69px;">
+        <a class="navbar-brand ms-3" href="#user">Barangay Quisol: Document Request System</a>
 
         <!-- Collapsible button for small screens -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,10 +29,8 @@
     </div>
 </nav>
 
-
-
 <!-- Sidebar -->
-<div id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark text-white p-3 position-fixed h-100">
+<div id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark text-white p-3 position-fixed h-100 d-flex flex-column">
     <h4 class="mb-2">Interface</h4>
     <ul class="nav flex-column">
         <!-- Home Section (Collapsible) -->
@@ -41,9 +39,9 @@
                 <i class="fas fa-home"></i> Home
             </a>
             <div id="homeSubmenu" class="collapse">
-                <ul class="nav flex-column pl-3 submenu">
+                <ul class="nav flex-column ps-3 submenu">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="request-form.php">Form</a>
+                        <a class="nav-link text-white" href="#blank">blank</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="subhome2.php#">Requests</a>
@@ -53,32 +51,32 @@
         </li>
 
         <!-- Account Section (Collapsible) -->
-<li class="nav-item">
-    <a class="nav-link text-white" href="#accountSubmenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="accountSubmenu">
-        <i class="fas fa-user"></i> Account
-    </a>
-    <div id="accountSubmenu" class="collapse">
-        <ul class="nav flex-column pl-3 submenu">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Settings</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="index.php">
-                    <i class="fas fa-sign-out-alt"></i> Log Out
-                </a>
-            </li>
-        </ul>
-    </div>
-</li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#accountSubmenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="accountSubmenu">
+                <i class="fas fa-user"></i> Account
+            </a>
+            <div id="accountSubmenu" class="collapse">
+                <ul class="nav flex-column ps-3 submenu">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.php">
+                            <i class="fas fa-sign-out-alt"></i> Log Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
 </div> 
-<!-- end sa sidebar -->
-
+<!-- End Sidebar -->
 
 <!-- Main Content Area (adjusted for sidebar) -->
-<div class="container-fluid" style="margin-left: 250px; padding-top: 20px;">
+<div class="container-fluid" style="margin-left: 250px; padding-top: 100px;">
     <div class="row">
         <main class="col-md-9 ms-sm-auto col-lg-10 px-4">
             <!-- Main content goes here -->
@@ -112,17 +110,16 @@
     });
 </script>
 
-
 <style>
     /* Prevent sidebar from covering navbar */
     body {
-        padding-top: 80px; /* To create space for the navbar */
+        padding-top: 80px; /* Ensure space for the navbar */
     }
 
     /* Adjust layout for large screens */
     @media (min-width: 992px) {
         #sidebar {
-            margin-top: 80px; /* Make the sidebar start below the navbar */
+            margin-top: 56px; /* Make the sidebar start below the navbar */
         }
         .container-fluid {
             margin-left: 250px; /* Ensure space for the sidebar */
@@ -131,6 +128,11 @@
 
     /* Ensure the content doesn't go under the sidebar on smaller screens */
     @media (max-width: 991px) {
+        #sidebar {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
         .container-fluid {
             margin-left: 0; /* Make the content use the full screen width */
         }

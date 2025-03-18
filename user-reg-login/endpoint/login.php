@@ -3,13 +3,39 @@ session_start();
 include('../conn/conn.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
+    $username = trim($_POST['username']);
     $password = $_POST['password'];
+    $recaptchaResponse = $_POST['g-recaptcha-response'];
+
+    // 1️⃣ ✅ Verify reCAPTCHA
+    if (empty($recaptchaResponse)) {
+        echo "
+        <script>
+            alert('Please complete the reCAPTCHA!');
+            window.location.href = 'http://localhost/software_engineering/user-reg-login/index.php';
+        </script>
+        ";
+        exit;
+    }
+
+    $secretKey = "6LfDm_gqAAAAAGBwdiIUpriUUD195b5KUO8ls81c"; // secretkey dri
+    $verifyURL = "https://www.google.com/recaptcha/api/siteverify";
+
+    // Use cURL for reCAPTCHA validation!
+    $data = ['secret' => $secretKey, 'response' => $recaptchaResponse];
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $verifyURL);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    $responseData = json_decode($response);
 
     try {
-        // Check if the username is "admin"
-        if ($username == "admin") {
-            // Directly log in as an admin without password check
+        // 2️⃣ 🟢 CHECK IF ADMIN         ---------------------------------------------------------------------------------
+        if ($username === "admin") {
             $stmt_admin = $conn->prepare("SELECT `tbl_admin_id`, `password_admin` FROM `tbl_admin` WHERE `username_admin` = :username");
             $stmt_admin->bindParam(':username', $username);
             $stmt_admin->execute();
@@ -27,18 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </script>
                 ";
                 exit;
-            } else {
-                echo "
-                <script>
-                    alert('Login Failed, Admin Not Found!');
-                    window.location.href = 'http://localhost/software_engineering/user-reg-login/index.php';
-                </script>
-                ";
-                exit;
             }
         }
 
-        // 🟢 CHECK IN tbl_user FOR NON-ADMIN USERS
+        // 3️⃣ 🟢 CHECK IF USER EXISTS IN tbl_user   --------------------------------------------------------------------------
         $stmt_user = $conn->prepare("SELECT `tbl_user_id`, `password` FROM `tbl_user` WHERE `username` = :username");
         $stmt_user->bindParam(':username', $username);
         $stmt_user->execute();
@@ -47,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user) {
             $stored_password_user = $user['password'];
 
-            // Verify hashed password for regular users
+            // ✅ Verify hashed password for users
             if (password_verify($password, $stored_password_user)) {
                 $_SESSION['user_id'] = $user['tbl_user_id'];
                 $_SESSION['username'] = $username;
@@ -71,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        // 🔴 IF USER NOT FOUND IN BOTH TABLES
+        // 4️⃣ 🔴 IF USER NOT FOUND
         echo "
         <script>
             alert('Login Failed, User Not Found!');
@@ -84,3 +102,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $e->getMessage();
     }
 }
+?>

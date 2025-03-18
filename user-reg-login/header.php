@@ -29,27 +29,40 @@
     </div>
 </nav>
 
-
 <!-- Sidebar -->
 <div id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark text-white p-3 position-fixed h-100">
     <h4 class="mb-2">Interface</h4>
     <ul class="nav flex-column">
         <!-- Home Section (Collapsible) -->
         <li class="nav-item">
-            <a class="nav-link text-white" href="#homeSubmenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="homeSubmenu">
-                <i class="fas fa-home"></i> Home
-            </a>
-            <div id="homeSubmenu" class="collapse">
-                <ul class="nav flex-column pl-3 submenu">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="subhome1.php">Form</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="subhome2.php#">Requests</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
+    <a class="nav-link text-white position-relative d-flex align-items-center" href="#homeSubmenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="homeSubmenu">
+        <i class="fas fa-home me-2"></i> 
+        <div class="d-flex w-100 justify-content-between">
+            <span>Home</span>
+            <span id="homeBadge" class="badge bg-danger rounded-pill px-2 py-1 shadow-sm ms-auto">
+                1+
+            </span>
+        </div>
+    </a>
+    <div id="homeSubmenu" class="collapse">
+        <ul class="nav flex-column submenu ps-3">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="subhome1.php">Form</a>
+            </li>     
+            <li class="nav-item">
+                <a class="nav-link text-white position-relative d-flex align-items-center" href="subhome2.php">
+                    <div class="d-flex w-100 justify-content-between">
+                        <span>Requests</span>
+                        <span id="requestBadge" class="badge bg-danger rounded-pill px-2 py-1 shadow-sm ms-auto">
+                            1+
+                        </span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
 
         <!-- Admin Section (Collapsible) -->
         <li class="nav-item">

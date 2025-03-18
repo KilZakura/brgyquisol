@@ -16,6 +16,20 @@
 
 <body class="bg-image" style="background-image: url('images/bg1.jpg'); background-size: cover; background-position: center; height: 100vh; margin: 0;">
 
+
+<?php
+if (isset($_SESSION['error'])) {
+    echo "<div style='color: red; text-align: center; margin-bottom: 10px;'>" . $_SESSION['error'] . "</div>";
+    unset($_SESSION['error']); // Clear error after displaying
+}
+?>
+
+<div>
+    <h1 class="mt-5 mb-5"> 
+        
+    </h1>
+</div>
+
         <!-- MAIN -->
     <div class="main">
 
@@ -29,7 +43,7 @@
                  <h1 class="text-center mb-0">Log in</h1>   
             <div class="login-form">
                         <!-- USERNAME -->
-                <form action="./endpoint/login.php" method="POST">
+                <!-- <form action="./endpoint/login.php" method="POST">
                     <div class="form-group">
                             <label for="username">Username:</label>
                             <input type="text" class="form-control" id="username" name="username" required>
@@ -40,7 +54,28 @@
                     </div>
                     <p class="registrationForm" onclick="showRegistrationForm()">No Account? Register Here.</p>
                     <button type="submit" class="btn btn-dark login-btn form-control">Login</button>
+                </form> -->
+                        <!-- karaan -->
+
+                <form action="./endpoint/login.php" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                    </div>
+
+                    <div class="form-group">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    </div>
+
+                    <p class="registrationForm" onclick="showRegistrationForm()">No Account? Register Here.</p>
+
+                    <!-- Google reCAPTCHA Widget -->
+                <div class="g-recaptcha" data-sitekey="6LfDm_gqAAAAALUh8eclwjpKT-BBX_1gmGxMy_CX"></div>
+                 
+                    <button type="submit" class="btn btn-dark login-btn form-control">Login</button>
+                    
                 </form>
+
             </div>
         </div>
 
@@ -110,6 +145,27 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+
+    <!-- Google reCAPTCHA API -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<div> 
+    <h1>
+
+    </h1>
+
+    <h1>
+        
+    </h1>
+</div>
+    <!-- Load reCAPTCHA Script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<div>
+    <h1 class="mt-5 mb-5"> <!-- mt = margin-top, mb = margin-bottom -->
+        
+    </h1>
+</div>
 
 </body>
 </html>
